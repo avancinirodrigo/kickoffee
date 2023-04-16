@@ -1,2 +1,2 @@
-# kickoffee
-Kickoff a python REST application while having a coffee
+# kickooffee
+Kickoff a OO python REST application while having a coffee
