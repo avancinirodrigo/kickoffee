@@ -41,7 +41,7 @@ jobs:
       - run:
           name: Define Environment Variable at Runtime
           command: |
-            echo 'export PYTHONPATH=$PYTHONPATH:$(pwd)' >> "$BASH_ENV"
+            echo 'export PYTHONPATH=$PYTHONPATH:$(pwd)/src' >> "$BASH_ENV"
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
