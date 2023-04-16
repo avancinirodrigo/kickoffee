@@ -1,5 +1,5 @@
-from kickoffee.src.dataaccess.database import Database
-from kickoffee.src.entities.user import User
+from dataaccess.database import Database
+from entities.user import User
 
 
 class UserManager:
@@ -8,7 +8,14 @@ class UserManager:
 
     def create(self, name: str, email: str, password):
         user = User(name, email, password)
-        session = Database.session()
-        user_repo = Database.user_repo()
+        session = self._db.session()
+        user_repo = self._db.user_repo()
         user_repo.add(user, session)
         session.close()
+
+    def get(self, email: str) -> User:
+        session = self._db.session()
+        user_repo = self._db.user_repo()
+        user = user_repo.get(email, session)
+        session.close()
+        return user

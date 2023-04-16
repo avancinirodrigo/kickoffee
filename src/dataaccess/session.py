@@ -5,8 +5,8 @@ from typing import Any, List
 class Session(ABC):
 
     @abstractmethod
-    def execute(self, query: str):
-        '''abstract execute a query'''
+    def add(self, obj: Any):
+        '''add object'''
 
     @abstractmethod
     def close(self):

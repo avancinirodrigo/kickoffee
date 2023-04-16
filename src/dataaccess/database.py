@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+
+from .user_repo import UserRepo
 from .session import Session
 
 
@@ -26,3 +28,7 @@ class Database(ABC):
     @abstractmethod
     def session(self) -> Session:
         '''abstract create session'''
+
+    @abstractmethod
+    def user_repo(self) -> UserRepo: # TODO: this domain dependency annoys me
+        '''abstract create UserRepo'''    
