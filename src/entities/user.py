@@ -7,12 +7,11 @@ class User:
     @property
     def name(self) -> str:
         return self._name
-    
+
     @property
     def email(self) -> str:
         return self._email
-        
+
     @property
     def password(self) -> str:
         return self._password
-    

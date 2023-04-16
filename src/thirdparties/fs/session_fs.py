@@ -14,4 +14,4 @@ class SessionFs(Session):
         '''fetch one row of a table'''
 
     def fetchall(self) -> List[Any]:
-        '''fetch all rows of a table'''    
+        '''fetch all rows of a table'''

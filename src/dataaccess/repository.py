@@ -10,4 +10,4 @@ class Repository(ABC):
 
     @abstractmethod
     def get(self, obj: Any, session: Session):
-        '''get from database'''        
+        '''get from database'''

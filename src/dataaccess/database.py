@@ -30,5 +30,5 @@ class Database(ABC):
         '''abstract create session'''
 
     @abstractmethod
-    def user_repo(self) -> UserRepo: # TODO: this domain dependency annoys me
-        '''abstract create UserRepo'''    
+    def user_repo(self) -> UserRepo:  # TODO: this domain dependency annoys me
+        '''abstract create UserRepo'''
