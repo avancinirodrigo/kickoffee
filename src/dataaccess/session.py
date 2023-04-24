@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import Any
 
 
 class Session(ABC):
@@ -13,9 +13,5 @@ class Session(ABC):
         '''abstract close a session'''
 
     @abstractmethod
-    def fetchone(self) -> Any:
-        '''abstract fetch one row of a table'''
-
-    @abstractmethod
-    def fetchall(self) -> List[Any]:
-        '''abstract fetch all rows of a table'''
+    def commit(self):
+        '''abstract commit session'''

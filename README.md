@@ -53,3 +53,24 @@ Kickoff a OO python REST application while having a coffee
 
 
 # Let's try to create a Domain Model
+
+# Installation
+
+## PostgreSQL
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib -y
+psql -V
+sudo passwd postgres
+postgres
+postgres
+su postgres
+psql -c "ALTER USER postgres WITH PASSWORD 'postgres'" -d postgres
+exit
+```
+
+# Running
+## Add Kickooffee on the path
+```bash
+export PYTHONPATH=~/kickooffee/repo/kickooffee/src
+```
