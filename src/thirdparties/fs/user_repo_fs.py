@@ -11,3 +11,9 @@ class UserRepoFs(UserRepo):
 
     def get(self, email: str, session: Session) -> User:
         return self._users[email]
+
+    def delete(self, email: str, session: Session):
+        '''TODO'''
+
+    def update(self, email: str, user: User, session: Session):
+        '''TODO'''
