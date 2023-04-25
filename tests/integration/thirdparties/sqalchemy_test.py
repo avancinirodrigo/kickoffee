@@ -1,4 +1,6 @@
+import pytest
 from entities.user import User
+from thirdparties.sqlalchemy.sqlalchemy_session import NotNullViolationException
 from thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
 
 
@@ -33,3 +35,35 @@ def test_create_all():
 
     db.close()
     db.drop()
+
+
+def test_null_exception(alchemydb):
+    dbname = 'nullexdb'
+    url = f'postgresql://postgres:postgres@localhost:5432/{dbname}'
+    db = SqlAlchemyDatabase()
+    db.connect(url)
+    db.create(overwrite=True)
+    db.create_all()
+
+    urepo = db.user_repo()
+    user = User('Rodrigo Avancini', 'avancinirodrigo@gmail.com', None)
+    session = db.session()
+    with pytest.raises(NotNullViolationException) as e:
+        urepo.add(user, session)
+    assert str(e.value) == 'Object violates not-null constraint'
+    session.close()
+    db.close()
+    db.drop()
+
+
+def test_create_overwrite():
+    dbname = 'createoverdb'
+    url = f'postgresql://postgres:postgres@localhost:5432/{dbname}'
+    db = SqlAlchemyDatabase()
+    db.connect(url)
+    db.create(overwrite=True)
+    assert db.exists()
+    db.create(overwrite=True)
+    assert db.exists()
+    db.drop()
+    db.close()

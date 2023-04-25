@@ -13,7 +13,7 @@ class SqlAlchemySession(Session):
             self._session.rollback()
             self._session.close()
             if 'NotNullViolation' in str(e):
-                raise NotNullViolationException('Object violates not-null constraint.')
+                raise NotNullViolationException('Object violates not-null constraint')
             else:
                 raise e
 

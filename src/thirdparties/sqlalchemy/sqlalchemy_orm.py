@@ -19,3 +19,4 @@ class UserOrm(Base, User, metaclass=UserMetaclass):
         self.name = name
         self.email = email
         self.password = password
+        print('---------------------------------------')
