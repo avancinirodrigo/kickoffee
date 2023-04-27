@@ -10,15 +10,15 @@ class Database(ABC):
         '''abstract connect'''
 
     @abstractmethod
-    def create(self, name: str):
+    def create(self, name: str = None):
         '''abstract database create'''
 
     @abstractmethod
-    def drop(self, name: str):
+    def drop(self, name: str = None):
         '''abstract database drop'''
 
     @abstractmethod
-    def exists(self, name: str) -> bool:
+    def exists(self, name: str = None) -> bool:
         '''abstract check if database exists'''
 
     @abstractmethod

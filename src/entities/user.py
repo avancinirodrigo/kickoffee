@@ -15,3 +15,15 @@ class User:
     @property
     def password(self) -> str:
         return self._password
+
+    @name.setter
+    def name(self, name: str):
+        self._name = name
+
+    @email.setter
+    def email(self, email: str):
+        self._email = email
+
+    @password.setter
+    def password(self, password: str):
+        self._password = password

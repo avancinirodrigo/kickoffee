@@ -19,3 +19,15 @@ class UserManager:
         user = user_repo.get(email, session)
         session.close()
         return user
+
+    def delete(self, email: str):
+        session = self._db.session()
+        user_repo = self._db.user_repo()
+        user_repo.delete(email, session)
+        session.close()
+
+    def update(self, email: str, userUp: User):
+        session = self._db.session()
+        user_repo = self._db.user_repo()
+        user_repo.update(email, userUp, session)
+        session.close

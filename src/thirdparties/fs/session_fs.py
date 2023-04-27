@@ -1,5 +1,4 @@
-from typing import Any, List
-
+from typing import Any
 from dataaccess.session import Session
 
 
@@ -10,8 +9,5 @@ class SessionFs(Session):
     def close(self):
         '''close a session'''
 
-    def fetchone(self) -> Any:
-        '''fetch one row of a table'''
-
-    def fetchall(self) -> List[Any]:
-        '''fetch all rows of a table'''
+    def commit(self):
+        '''commit session'''
