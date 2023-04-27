@@ -1,4 +1,6 @@
+from unittest.mock import patch
 import pytest
+from sqlalchemy import exc
 from entities.user import User
 from thirdparties.sqlalchemy.sqlalchemy_session import NotNullViolationException
 from thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
@@ -51,6 +53,27 @@ def test_null_exception(alchemydb):
     with pytest.raises(NotNullViolationException) as e:
         urepo.add(user, session)
     assert str(e.value) == 'Object violates not-null constraint'
+    session.close()
+    db.close()
+    db.drop()
+
+
+@patch('sqlalchemy.orm.Session.commit',
+       side_effect=exc.IntegrityError(None, None, Exception('Test')))
+def test_commit_exception(alchemydb):
+    dbname = 'nullexdb'
+    url = f'postgresql://postgres:postgres@localhost:5432/{dbname}'
+    db = SqlAlchemyDatabase()
+    db.connect(url)
+    db.create(overwrite=True)
+    db.create_all()
+
+    urepo = db.user_repo()
+    user = User('Rodrigo Avancini', 'avancinirodrigo@gmail.com', None)
+    session = db.session()
+    with pytest.raises(Exception) as e:
+        urepo.add(user, session)
+    assert 'Test' in str(e.value)
     session.close()
     db.close()
     db.drop()

@@ -1,9 +1,9 @@
-from sqlalchemy import exc
+from sqlalchemy import exc, orm
 from dataaccess.session import Session
 
 
 class SqlAlchemySession(Session):
-    def __init__(self, session):
+    def __init__(self, session: orm.Session):
         self._session = session
 
     def commit(self):
