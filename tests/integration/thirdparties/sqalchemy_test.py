@@ -1,9 +1,9 @@
 from unittest.mock import patch
 import pytest
 from sqlalchemy import exc
-from entities.user import User
-from thirdparties.sqlalchemy.sqlalchemy_session import NotNullViolationException
-from thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
+from app.entities.user import User
+from app.thirdparties.sqlalchemy.sqlalchemy_session import NotNullViolationException
+from app.thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
 
 
 def test_create():

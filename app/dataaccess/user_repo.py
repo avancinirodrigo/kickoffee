@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from entities.user import User
+from app.entities.user import User
 from .repository import Repository
 from .session import Session
 

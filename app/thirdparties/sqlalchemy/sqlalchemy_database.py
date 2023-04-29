@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from dataaccess.session import Session
 from sqlalchemy_utils import database_exists, create_database, drop_database
-from dataaccess.database import Database
-from dataaccess.user_repo import UserRepo
+from app.dataaccess.session import Session
+from app.dataaccess.database import Database
+from app.dataaccess.user_repo import UserRepo
 from .sqlalchemy_session import SqlAlchemySession
 from .sqlalchemy_base import Base
 from .sqlalchemy_repo import UserOrmRepo

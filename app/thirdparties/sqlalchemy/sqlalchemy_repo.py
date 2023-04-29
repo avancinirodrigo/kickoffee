@@ -1,6 +1,6 @@
-from dataaccess.user_repo import UserRepo
-from dataaccess.session import Session
-from entities.user import User
+from app.dataaccess.user_repo import UserRepo
+from app.dataaccess.session import Session
+from app.entities.user import User
 from .sqlalchemy_orm import UserOrm
 
 

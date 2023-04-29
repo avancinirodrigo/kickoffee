@@ -1,7 +1,7 @@
-from dataaccess.session import Session
-from dataaccess.database import Database
-from dataaccess.user_repo import UserRepo
-from thirdparties.fs.user_repo_fs import UserRepoFs
+from app.dataaccess.session import Session
+from app.dataaccess.database import Database
+from app.dataaccess.user_repo import UserRepo
+from app.thirdparties.fs.user_repo_fs import UserRepoFs
 from .session_fs import SessionFs
 
 

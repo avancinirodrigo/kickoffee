@@ -1,5 +1,5 @@
 import pytest
-from thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
+from app.thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
 
 
 @pytest.fixture

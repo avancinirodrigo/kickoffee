@@ -1,5 +1,5 @@
 from sqlalchemy import exc, orm
-from dataaccess.session import Session
+from app.dataaccess.session import Session
 
 
 class SqlAlchemySession(Session):
