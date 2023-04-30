@@ -10,11 +10,11 @@ from .rest_response import RestResponse
 @bp.route('/tokens', methods=['POST'])
 def create_token():
     userdata = request.get_json() or {}
-    uc = LogInController(db, userdata)
-    out = uc.execute()
+    ctrl = LogInController(db, userdata)
+    out = ctrl.execute()
     if isinstance(out.type, Success):
         user = out.data
         access_token = create_access_token(identity=user.email,
                                            additional_claims=userdata)
-        return jsonify({"token": access_token}), 200
+        return jsonify({'token': access_token}), 200
     return RestResponse.Json(out)

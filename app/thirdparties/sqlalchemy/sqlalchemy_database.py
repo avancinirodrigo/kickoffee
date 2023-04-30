@@ -36,7 +36,7 @@ class SqlAlchemyDatabase(Database):
         Base.metadata.create_all(self._engine)
 
     def create_all(self, overwrite: bool = False):
-        self.create(overwrite)
+        self.create(overwrite=overwrite)
         self.create_all_tables()
 
     def close(self):
