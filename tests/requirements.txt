@@ -1,4 +1,4 @@
 pytest
 pytest-cov
-pytest-flask
 flake8
+pytest-flask

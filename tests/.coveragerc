@@ -1,0 +1,6 @@
+[run]
+source = 
+    app
+    webapp
+omit =
+    */webapp/main.py
