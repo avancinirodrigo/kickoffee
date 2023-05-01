@@ -16,6 +16,8 @@ def app():
     return app
 
 # https://stackoverflow.com/questions/39822265/flask-testing-how-to-retrieve-variables-that-were-passed-to-jinja
+
+
 @contextmanager
 def get_context_variables(app):
     recorded = []
