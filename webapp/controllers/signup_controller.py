@@ -1,6 +1,7 @@
-from app.ucs.use_case_response import MissedInfo, Response
+from app.ucs.use_case_response import Created, UseCaseResponse
 from app.dataaccess.database import Database
-from app.ucs.user_manager import UserManager
+from app.ucs.signup import SignUp
+from .rest_response import RestResponse
 
 
 class SignUpController:
@@ -8,13 +9,8 @@ class SignUpController:
         self._db = db
         self._userdata = userdata
 
-    def execute(self) -> Response:
-        if ('name' not in self._userdata
-                or 'email' not in self._userdata
-                or 'password' not in self._userdata):
-            return MissedInfo("SigUp missed some key-value")
-        name = self._userdata['name']
-        email = self._userdata['email']
-        password = self._userdata['password']
-        uc = UserManager(self._db)
-        return uc.create(name, email, password)
+    def execute(self) -> RestResponse:
+        uc = SignUp(self._db, self._userdata)
+        resp = uc.execute()
+        if isinstance(resp.type, Created):
+            return RestResponse.Created()

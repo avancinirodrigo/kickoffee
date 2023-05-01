@@ -4,7 +4,7 @@ from app.ucs.use_case_response import Success
 from webapp.controllers.login_controller import LogInController
 from . import bp
 from .dataaccess import db
-from .rest_response import RestResponse
+from ...controllers.rest_response import RestResponse
 
 
 @bp.route('/tokens', methods=['POST'])
