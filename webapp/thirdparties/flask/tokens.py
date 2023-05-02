@@ -1,20 +1,13 @@
 from flask import request, jsonify
-from flask_jwt_extended import create_access_token
-from app.ucs.use_case_response import Success
-from webapp.controllers.login_controller import LogInController
+from app.thirdparties.flask.jwt_flask import JwtFlask
+from webapp.controllers.user_controller import UserController
 from . import bp
 from .dataaccess import db
-from ...controllers.rest_response import RestResponse
 
 
 @bp.route('/tokens', methods=['POST'])
 def create_token():
     userdata = request.get_json() or {}
-    ctrl = LogInController(db, userdata)
-    out = ctrl.execute()
-    if isinstance(out.type, Success):
-        user = out.data
-        access_token = create_access_token(identity=user.email,
-                                           additional_claims=userdata)
-        return jsonify({'token': access_token}), 200
-    return RestResponse.Json(out)
+    ctrl = UserController(db, userdata)
+    out = ctrl.login(JwtFlask())
+    return jsonify({'token': out.data}), out.status_code

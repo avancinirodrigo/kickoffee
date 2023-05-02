@@ -5,21 +5,6 @@ class RestResponse:
     def __init__(self, status_code: int, data: dict = ""):
         self._data = data
         self._status_code = status_code
-    # @staticmethod
-    # def Json(response: UseCaseResponse) -> Response:
-    #     if isinstance(response.type, Created):
-    #         return RestResponse.Created()
-    #     elif isinstance(response.type, Success):
-    #         return RestResponse.Ok()
-    #     elif isinstance(response.type, MissedInfo):
-    #         return RestResponse.BadRequest(response.type.message)
-    #     elif isinstance(response.type, Duplicated):
-    #         return RestResponse.Conflict(response.type.message)
-    #     elif isinstance(response.type, NotFound):
-    #         return RestResponse.NotFound(response.type.message)
-    #     elif isinstance(response.type, NotMatched):
-    #         return RestResponse.Unauthorized(response.type.message)
-    #     return RestResponse.NotImplemented(f'Response not implemented yet {response.__dict__}')
 
     @property
     def data(self) -> dict:
@@ -30,8 +15,8 @@ class RestResponse:
         return self._status_code
 
     @staticmethod
-    def Ok() -> RestResponse:
-        return RestResponse(200)
+    def Ok(data: dict) -> RestResponse:
+        return RestResponse(200, data)
 
     @staticmethod
     def Created() -> RestResponse:
