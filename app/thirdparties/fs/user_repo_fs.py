@@ -1,6 +1,6 @@
-from dataaccess.user_repo import UserRepo
-from entities.user import User
-from dataaccess.session import Session
+from app.dataaccess.user_repo import UserRepo
+from app.entities.user import User
+from app.dataaccess.session import Session
 
 
 class UserRepoFs(UserRepo):

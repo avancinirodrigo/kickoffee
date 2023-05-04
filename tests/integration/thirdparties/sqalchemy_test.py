@@ -1,9 +1,9 @@
 from unittest.mock import patch
 import pytest
 from sqlalchemy import exc
-from entities.user import User
-from thirdparties.sqlalchemy.sqlalchemy_session import NotNullViolationException
-from thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
+from app.entities.user import User
+from app.thirdparties.sqlalchemy.sqlalchemy_database import SqlAlchemyDatabase
+from app.dataaccess.exceptions import NotNullViolationException, UniqueViolationException
 
 
 def test_create():
@@ -90,3 +90,24 @@ def test_create_overwrite():
     assert db.exists()
     db.drop()
     db.close()
+
+
+def test_unique_exception(alchemydb):
+    dbname = 'nullexdb'
+    url = f'postgresql://postgres:postgres@localhost:5432/{dbname}'
+    db = SqlAlchemyDatabase()
+    db.connect(url)
+    db.create(overwrite=True)
+    db.create_all()
+
+    urepo = db.user_repo()
+    user1 = User('Rodrigo Avancini', 'avancinirodrigo@gmail.com', 'avancini')
+    session = db.session()
+    urepo.add(user1, session)
+    user2 = User('Rodrigo Avancini', 'avancinirodrigo@gmail.com', 'avancini')
+    with pytest.raises(UniqueViolationException) as e:
+        urepo.add(user2, session)
+    assert str(e.value) == 'Object violates unique constraint'
+    session.close()
+    db.close()
+    db.drop()
