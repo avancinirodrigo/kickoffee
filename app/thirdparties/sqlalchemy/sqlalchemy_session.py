@@ -1,5 +1,6 @@
 from sqlalchemy import exc, orm
 from app.dataaccess.session import Session
+from app.dataaccess.exceptions import NotNullViolationException, UniqueViolationException
 
 
 class SqlAlchemySession(Session):
@@ -14,6 +15,8 @@ class SqlAlchemySession(Session):
             self._session.close()
             if 'NotNullViolation' in str(e):
                 raise NotNullViolationException('Object violates not-null constraint')
+            elif 'UniqueViolation' in str(e):
+                raise UniqueViolationException('Object violates unique constraint')
             else:
                 raise e
 
@@ -28,7 +31,3 @@ class SqlAlchemySession(Session):
 
     def query(self, object):
         return self._session.query(object)
-
-
-class NotNullViolationException(Exception):
-    pass
